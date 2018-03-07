@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      
       flash[:success] = "Welcome to Cat Land!"
       redirect_to user_url(user)
     else
