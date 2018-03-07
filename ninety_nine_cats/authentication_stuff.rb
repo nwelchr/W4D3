@@ -72,5 +72,5 @@ def create
   else
     flash.now[:errors] = ["Bad auth credentials"]
     render :new
- end
+  end
 end
