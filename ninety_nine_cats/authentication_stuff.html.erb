@@ -1,0 +1,68 @@
+<!-- session views new.html.erb -->
+<%= render 'shared/errors' %>
+
+<!-- application.html.erb -->
+<% if logged_in? %>
+  <ul>
+    <li>Logged in as: <%= current_user.username %></li>
+    <li>
+      <form action="<%= session_url %>" method="POST">
+        <input type="hidden"
+               name="authenticity_token"
+               value="<%= form_authenticity_token %>">
+        <input type="hidden" value="delete" name="_method" />
+        <input type="submit" value="Logout" />
+      </form>
+    </li>
+  </ul>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
+
+<!-- shared/errors -->
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
+<!-- authenticity -->
+<form action="" method="post">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+</form>
+
+<!-- logout -->
+<form action="<%= session_url %>" method = "POST">
+  <input type="hidden" name ="_method" value = "DELETE" />
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  <button>Logout</button>
+</form>
+
+<!-- login -->
+<h1>Log in!</h1>
+
+<form action="/session" method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label for="user_username">Username</label>
+  <input type="text" name="user[username]" id="user_username">
+
+  <br />
+
+  <label for="user_password">Password</label>
+  <input type="password" name="user[password]" id="user_password">
+
+  <br />
+
+  <input type="submit" value="Log in!">
+</form>
