@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_current_user!, only: [:new, :create]
+
   def new
     render :new
   end
@@ -7,9 +9,9 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      
+      log_in!(user)
       flash[:success] = "Welcome to Cat Land!"
-      redirect_to user_url(user)
+      redirect_to cats_url
     else
       flash.now[:errors] = user.errors.full_messages
       render :new

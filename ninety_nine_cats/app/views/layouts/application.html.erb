@@ -9,20 +9,24 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      <ul>
-        <li>Logged in as: <%= @current_user.user_name %></li>
-        <li>
-          <form action="<%= session_url %>" method="POST">
-            <input type="hidden"
-                   name="authenticity_token"
-                   value="<%= form_authenticity_token %>">
-            <input type="hidden" name="_method" value="DELETE" />
-            <button>Logout</button>
-          </form>
-        </li>
-      </ul>
-    <% end %>
+    <header>
+      <% if logged_in? %>
+        <ul>
+          <li>Logged in as: <%= current_user.user_name %></li>
+          <li>
+            <form action="<%= session_url %>" method="POST">
+              <input type="hidden"
+                     name="authenticity_token"
+                     value="<%= form_authenticity_token %>">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button>Logout</button>
+            </form>
+          </li>
+        </ul>
+      <% else %>
+        <%= link_to "Log in!", '../session/new' %>
+      <% end %>
+    </header>
 
     <%= yield %>
   </body>

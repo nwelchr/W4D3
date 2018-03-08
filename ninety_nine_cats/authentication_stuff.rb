@@ -40,10 +40,10 @@ def log_in!(user)
   self.session[:session_token] = user.session_token
 end
 
-def log_out!
-  current_user.reset_session_token!
-  self.session[session_token] = nil
-end
+# def log_out!
+#   current_user.reset_session_token!
+#   self.session[session_token] = nil
+# end
 
 # Let's finally finish what we started: let's protect the users#show page so that only the user themselves can view their own show
 def require_user! #applicationcontroller

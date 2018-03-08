@@ -1,3 +1,5 @@
+<%= link_to "Create a new user", '../users/new' %>
+
 <h1>Log in!</h1>
 
 <form action="/session" method="POST">
@@ -7,7 +9,7 @@
     value="<%= form_authenticity_token %>">
 
   <label for="user_username">Username</label>
-  <input type="text" name="user[username]" id="user_username">
+  <input type="text" name="user[user_name]" id="user_username">
 
   <br />
 
